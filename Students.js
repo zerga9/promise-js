@@ -60,10 +60,26 @@ class StudentFilter {
       return [...accumulator, ...current];
     }, []);
   }
+
   getStudents(cohort, mininumAge, gender) {
     // method returns a promise
     return new Promise((resolve, reject) => {
-      resolve(studentDataService());
+      if (!arguments.length) {
+        studentDataService()
+          .then(result => {
+            const allStudents = this.getAllStudents(result);
+            console.log("all students", allStudents);
+
+            return resolve(allStudents);
+          })
+          .catch(error => console.log("error", error));
+      }
+      // If the cohort argument is passed, the promise resolves only students from that cohort
+      if (cohort) {
+        studentDataService(cohort)
+          .then(result => resolve(result))
+          .catch(error => console.log("error", error));
+      }
     });
   }
 }
