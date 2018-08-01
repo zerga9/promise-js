@@ -80,6 +80,23 @@ class StudentFilter {
           .then(result => resolve(result))
           .catch(error => console.log("error", error));
       }
+
+      // If the minimumAge argument is passed, the promise resolve only students who are that age or oldr
+      if (minimumAge) {
+        studentDataService()
+          .then(result => {
+            const allStudents = this.getAllStudents(result);
+
+            const filteredStudents = allStudents.filter(
+              student => student.age >= minimumAge
+            );
+
+            console.log("age filteredStudents", filteredStudents);
+
+            return resolve(filteredStudents);
+          })
+          .catch(error => console.log("error", error));
+      }
     });
   }
 }
