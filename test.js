@@ -1,16 +1,14 @@
 var expect = require("chai").expect;
 
-describe("NewsController", function() {
-  var students;
+describe("StudentFilter", function() {
+  describe("#getStudents()", function() {
+    it("should return a promise");
 
-  // beforeEach(function() {
-  //   students = new getStudents();
-  // });
+    var studentFilter = new StudentFilter();
 
-  it("assertion success", async () => {
-    students = new StudentFilter();
-    student.getStudents();
-    const result = await resolvingPromise;
-    expect(result).to.equal("promise resolved");
+    studentFilter.getStudents(function(err) {
+      if (err) done(err);
+      else done();
+    });
   });
 });

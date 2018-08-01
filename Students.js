@@ -42,6 +42,7 @@ function studentDataService(cohort, minimumAge, gender) {
 
 class StudentFilter {
   getStudents(cohort, mininumAge, gender) {
+    // method returns a promise
     return new Promise((resolve, reject) => {
       resolve(studentDataService());
     });
