@@ -1,4 +1,4 @@
-function studentDataService(cohort, minimumAge, gender) {
+function studentDataService(cohort) {
   const students = {
     august: [
       { name: "Andy", age: 29, gender: "male" },
@@ -60,10 +60,13 @@ class StudentFilter {
       return [...accumulator, ...current];
     }, []);
   }
-
-  getStudents(cohort, mininumAge, gender) {
-    // method returns a promise
+  getStudents(cohort, minimumAge, gender) {
+    // The method returns a promise
     return new Promise((resolve, reject) => {
+      // do logic stuff to work out what data to resolve
+      // E.g:
+
+      // If no arguments are passed, the promise resolve all students from both cohorts
       if (!arguments.length) {
         studentDataService()
           .then(result => {
@@ -74,6 +77,7 @@ class StudentFilter {
           })
           .catch(error => console.log("error", error));
       }
+
       // If the cohort argument is passed, the promise resolves only students from that cohort
       if (cohort) {
         studentDataService(cohort)
