@@ -33,6 +33,9 @@ function studentDataService(cohort, minimumAge, gender) {
     ]
   };
   return new Promise((resolve, reject) => {
+    if (!cohort) {
+      resolve(students);
+    }
     resolve(students[cohort]);
   });
 }
