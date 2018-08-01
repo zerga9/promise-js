@@ -97,6 +97,25 @@ class StudentFilter {
           })
           .catch(error => console.log("error", error));
       }
+
+      // If the gender argument is passed, the promise resolves only students who are that gender
+      if (gender) {
+        studentDataService()
+          .then(result => {
+            const allStudents = this.getAllStudents(result);
+
+            const filteredStudents = allStudents.filter(
+              student => student.gender === gender
+            );
+
+            console.log("gender filteredStudents", filteredStudents);
+
+            return resolve(filteredStudents);
+          })
+          .catch(error => console.log("error", error));
+      }
+
+      // what to do if all arguments are passed??
     });
   }
 }
